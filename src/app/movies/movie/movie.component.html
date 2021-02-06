@@ -1,0 +1,35 @@
+<mat-card class="card-container">
+  <img
+    style="object-fit: cover; height: 300px; width: 300px; text-align: left"
+    [src]="movie.Poster"
+    alt="Poster"
+  />
+  <table>
+    <tr style="color: rgb(44, 102, 44); text-align: left">
+      <td colspan="2">
+        {{ movie.Title }}
+      </td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>
+        {{ movie.Type }}
+      </td>
+    </tr>
+    <tr>
+      <td>Year</td>
+      <td>
+        {{ movie.Year }}
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button mat-button (click)="getMovieDetails()" style="color: #5881b7">
+          <u>Details</u>
+        </button>
+      </td>
+    </tr>
+  </table>
+</mat-card>
+<app-error [show]="show" [message]="message"></app-error>
+<app-spinner [show]="showSpinner"></app-spinner>

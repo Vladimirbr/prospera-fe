@@ -1,0 +1,84 @@
+<div class="container">
+  <form class="example-form" #movieForm="ngForm">
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Movie Name</mat-label>
+            <input
+              id="movieName"
+              class="form-control"
+              matInput
+              placeholder="Ex. Super Man"
+              required
+              [(ngModel)]="name"
+              name="movieName"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Type</mat-label>
+            <mat-select
+              id="movieType"
+              class="form-control"
+              [(ngModel)]="type"
+              name="movieType"
+            >
+              <mat-option selected value=""></mat-option>
+              <mat-option value="movie">Movie</mat-option>
+              <mat-option value="series">Series</mat-option>
+              <mat-option value="episode">episode</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Year</mat-label>
+            <input
+              id="movieYear"
+              class="form-control"
+              matInput
+              maxlength="4"
+              placeholder="Ex. 1986"
+              [(ngModel)]="year"
+              name="movieYear"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="findMovie()"
+          >
+            Find
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<app-error [show]="show" [message]="message"></app-error>
+<div *ngIf="displayResult">
+  <mat-paginator
+    class="container"
+    style="background-color: rgb(103, 201, 188)"
+    #paginator
+    [showFirstLastButtons]="true"
+    [length]="totalSize"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPage"
+    (page)="handlePage($event)"
+  >
+  </mat-paginator>
+
+  <app-movie
+    class="container"
+    *ngFor="let item of movies; let i = index"
+    [index]="i"
+    [movie]="item"
+  ></app-movie>
+</div>
+<app-spinner [show]="showSpinner"></app-spinner>
