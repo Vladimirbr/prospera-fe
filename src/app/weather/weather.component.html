@@ -1,0 +1,62 @@
+<div class="container">
+  <form class="example-form" #weatherForm="ngForm">
+    <table class="example-full-width" cellspacing="0" mat-table>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <input
+              matInput
+              placeholder="Search a city"
+              aria-label="City"
+              [matAutocomplete]="auto"
+              [formControl]="searchCityCtrl"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngIf="isLoading" class="is-loading"
+                >Loading...</mat-option
+              >
+              <ng-container *ngIf="!isLoading">
+                <mat-option
+                  *ngFor="let city of filteredCities"
+                  [value]="city.name + ',' + city.country"
+                >
+                  <span
+                    ><b>{{ city.name }}</b> ({{ city.country }})</span
+                  >
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+          </mat-form-field>
+          <br />
+
+          <div *ngIf="errorMsgAutoComplite" style="color: red">
+            {{ errorMsgAutoComplite }}
+          </div>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            (click)="findByCity()"
+          >
+            Find
+          </button>
+        </td>
+        <td>
+          <button
+            mat-raised-button
+            style="background-color: rgb(33, 95, 165); color: white"
+            type="submit"
+            (click)="findByMyLocation()"
+          >
+            Find by my location
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<app-info [weather]="weather" *ngIf="showInfo"></app-info>
+<app-spinner [show]="showSpinner"></app-spinner>
+<app-error [show]="showError" [message]="erroMessage"></app-error>

@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgb(66, 44, 44);
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}

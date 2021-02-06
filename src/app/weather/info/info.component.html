@@ -1,0 +1,31 @@
+<div class="container">
+  <table mat-table cellspacing="0" style="color: rgb(75, 133, 151)">
+    <tr>
+      <td></td>
+      <td>
+        <b>{{ weather.name }},</b>
+      </td>
+      <td>
+        <b>{{ weather.sys.country }}</b>
+      </td>
+      <td>
+        <b>
+          {{ weather.weather[0].main }} -
+          {{ weather.weather[0].description }}</b
+        >
+      </td>
+    </tr>
+    <tr>
+      <td><b>Temp</b></td>
+      <td>{{ weather.main.temp }} &#8451;</td>
+      <td><b>Feels Like</b></td>
+      <td>{{ weather.main.feels_like }}&#8451;</td>
+    </tr>
+    <tr>
+      <td><b>Pressure</b></td>
+      <td>{{ weather.main.pressure }} hpa</td>
+      <td><b>Humidity</b></td>
+      <td>{{ weather.main.humidity }} %</td>
+    </tr>
+  </table>
+</div>
